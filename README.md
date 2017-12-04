@@ -41,23 +41,43 @@ const geojson = {type: 'FeatureCollection',
 const extracted = new GeoJsonGeometries(geojson);
 
 extracted.points
-// => [{
-//   coordinates: [102, 0.5],
-//   properties: {prop0: 'value0'}
-// }]
+// => {
+//   type: "FeatureCollection",
+//   features: [{
+//     type: "Feature",
+//     geometry: {
+//       type: "Point",
+//       coordinates: [102, 0.5]
+//     },
+//     properties: {prop0: 'value0'}
+//   }]
+// }
 
 extracted.lines
-// => [{
-//   coordinates: [[[102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]]],
-//   properties: { prop1: 'value1' }
-// }]
-//
+// => {
+//   type: "FeatureCollection",
+//   features: [{
+//     type: "Feature",
+//     geometry: {
+//       type: "LineString",
+//       coordinates: [[[102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]]]
+//     },
+//     properties: {prop1: 'value1'}
+//   }]
+// }
 
 extracted.polygons
-// => [{
-//   coordinates: [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]],
-//   properties: {prop2: 'value2'}
-// }]
+// => {
+//   type: "FeatureCollection",
+//   features: [{
+//     type: "Feature",
+//     geometry: {
+//       type: "Polygon",
+//       coordinates: [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]]
+//     },
+//     properties: {prop2: 'value2'}
+//   }]
+// }
 ```
 
 ## API
@@ -79,21 +99,21 @@ Create an instance of the geometries extractor.
 ### geoJsonGeometries.points ⇒ <code>Array.&lt;Object&gt;</code>
 Returns the list of geometries of type Point found in the geojson.
 
-**Returns**: <code>Array.&lt;Object&gt;</code> - The list of points with inherited properties if any.  
+**Returns**: <code>Array.&lt;Object&gt;</code> - A FeatureCollection of points with inherited properties if any.  
 
 <a name="GeoJsonGeometries+lines"></a>
 
 ### geoJsonGeometries.lines ⇒ <code>Array.&lt;object&gt;</code>
 Returns the list of geometries of type LineString found in the geojson.
 
-**Returns**: <code>Array.&lt;object&gt;</code> - The list of lines with inherited properties if any.  
+**Returns**: <code>Array.&lt;object&gt;</code> - A FeatureCollection of lines with inherited properties if any.  
 
 <a name="GeoJsonGeometries+polygons"></a>
 
 ### geoJsonGeometries.polygons ⇒ <code>Array.&lt;object&gt;</code>
 Returns the list of geometries of type Polygon found in the geojson.
 
-**Returns**: <code>Array.&lt;object&gt;</code> - The list of polygons with inherited properties if any.  
+**Returns**: <code>Array.&lt;object&gt;</code> - A FeatureCollection of polygons with inherited properties if any.  
 
 ## Authors
 * **Simone Primarosa** - [simonepri](https://github.com/simonepri)
