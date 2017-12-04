@@ -40,19 +40,20 @@ const geojson = {type: 'FeatureCollection',
 
 const extracted = new GeoJsonGeometries(geojson);
 
-console.log(extracted.points);
+extracted.points
 // => [{
 //   coordinates: [102, 0.5],
 //   properties: {prop0: 'value0'}
 // }]
 
-console.log(extracted.lines);
+extracted.lines
 // => [{
 //   coordinates: [[[102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]]],
 //   properties: { prop1: 'value1' }
 // }]
 //
-console.log(extracted.polygons);
+
+extracted.polygons
 // => [{
 //   coordinates: [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]],
 //   properties: {prop2: 'value2'}
