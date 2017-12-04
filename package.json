@@ -1,0 +1,56 @@
+{
+  "name": "geojson-geometries",
+  "version": "1.0.0",
+  "description": "Extract elementary geometries from a geojson inheriting properties.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "*",
+    "codecov": "^3.0.0",
+    "nyc": "^11.3.0",
+    "xo": "*"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "xo && nyc ava --verbose",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonepri/geojson-geometries.git"
+  },
+  "author": [
+    {
+      "name": "Simone Primarosa",
+      "email": "simone.pri@hotmail.it"
+    }
+  ],
+  "keywords": [
+    "geojson",
+    "geometries",
+    "geometry",
+    "point",
+    "points",
+    "line",
+    "lines",
+    "polygon",
+    "polygons",
+    "extract"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simonepri/geojson-geometries/issues"
+  },
+  "homepage": "https://github.com/simonepri/geojson-geometries#readme",
+  "xo": {
+    "space": true
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "package.json",
+    "index.js"
+  ]
+}
