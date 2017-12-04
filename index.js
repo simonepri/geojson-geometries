@@ -34,26 +34,26 @@ class GeoJsonGeometries {
   /**
    * Returns the list of geometries of type Point found in the geojson.
    * @public
-   * @return {Object[]} The list of points with inherited properties if any.
+   * @return {Object[]} A FeatureCollection of points with inherited properties if any.
    */
   get points() {
-    return this.pointsList || [];
+    return {type: FEATURE_COLLECTION, features: this.pointsList || []};
   }
   /**
    * Returns the list of geometries of type LineString found in the geojson.
    * @public
-   * @return {object[]} The list of lines with inherited properties if any.
+   * @return {object[]} A FeatureCollection of lines with inherited properties if any.
    */
   get lines() {
-    return this.linesList || [];
+    return {type: FEATURE_COLLECTION, features: this.linesList || []};
   }
   /**
    * Returns the list of geometries of type Polygon found in the geojson.
    * @public
-   * @return {object[]} The list of polygons with inherited properties if any.
+   * @return {object[]} A FeatureCollection of polygons with inherited properties if any.
    */
   get polygons() {
-    return this.polygonsList || [];
+    return {type: FEATURE_COLLECTION, features: this.polygonsList || []};
   }
 
   _loadGeneric(geojson, properties) {
@@ -105,13 +105,13 @@ class GeoJsonGeometries {
   }
 
   _loadPoint(coordinates, properties) {
-    this.pointsList.push({coordinates, properties});
+    this.pointsList.push({type: FEATURE, geometry: {type: POINT, coordinates}, properties});
   }
   _loadLine(coordinates, properties) {
-    this.linesList.push({coordinates, properties});
+    this.linesList.push({type: FEATURE, geometry: {type: LINE_STRING, coordinates}, properties});
   }
   _loadPolygon(coordinates, properties) {
-    this.polygonsList.push({coordinates, properties});
+    this.polygonsList.push({type: FEATURE, geometry: {type: POLYGON, coordinates}, properties});
   }
 }
 
