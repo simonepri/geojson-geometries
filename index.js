@@ -24,7 +24,8 @@ class GeoJsonGeometries {
    *  geometries of type Polygon
    */
   constructor(geojson, options) {
-    options = options === undefined ? {} : options;
+    options = typeof options === 'object' ? options : {};
+
     this.pointsList = options.ignorePoints === true ? undefined : [];
     this.linesList = options.ignoreLines === true ? undefined : [];
     this.polygonsList = options.ignorePolygons === true ? undefined : [];
