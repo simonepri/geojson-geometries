@@ -83,12 +83,13 @@ extracted.polygons
 ## API
 <a name="new_GeoJsonGeometries_new"></a>
 
-### new GeoJsonGeometries(geojson, [options])
+### new GeoJsonGeometries(geoJson, [options])
 Create an instance of the geometries extractor.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| geojson | <code>Object</code> | The geojson from which extract the geometries. |
+| geoJson | <code>Object</code> | The GeoJSON from which extract the geometries. |
 | [options] | <code>Object</code> | Optional options. |
 | options.ignorePoints | <code>boolean</code> | If true the extractor will ignore  geometries of type Point. |
 | options.ignoreLines | <code>boolean</code> | If true the extractor will ignore  geometries of type LineString. |
@@ -97,23 +98,26 @@ Create an instance of the geometries extractor.
 <a name="GeoJsonGeometries+points"></a>
 
 ### geoJsonGeometries.points ⇒ <code>Array.&lt;Object&gt;</code>
-Returns the list of geometries of type Point found in the geojson.
+Returns the list of geometries of type Point found in the GeoJSON.
 
+**Kind**: instance property of [<code>GeoJsonGeometries</code>](#GeoJsonGeometries)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - A FeatureCollection of points with inherited properties if any.  
 
 <a name="GeoJsonGeometries+lines"></a>
 
-### geoJsonGeometries.lines ⇒ <code>Array.&lt;object&gt;</code>
-Returns the list of geometries of type LineString found in the geojson.
+### geoJsonGeometries.lines ⇒ <code>Array.&lt;Object&gt;</code>
+Returns the list of geometries of type LineString found in the GeoJSON.
 
-**Returns**: <code>Array.&lt;object&gt;</code> - A FeatureCollection of lines with inherited properties if any.  
+**Kind**: instance property of [<code>GeoJsonGeometries</code>](#GeoJsonGeometries)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - A FeatureCollection of lines with inherited properties if any.  
 
 <a name="GeoJsonGeometries+polygons"></a>
 
-### geoJsonGeometries.polygons ⇒ <code>Array.&lt;object&gt;</code>
-Returns the list of geometries of type Polygon found in the geojson.
+### geoJsonGeometries.polygons ⇒ <code>Array.&lt;Object&gt;</code>
+Returns the list of geometries of type Polygon found in the GeoJSON.
 
-**Returns**: <code>Array.&lt;object&gt;</code> - A FeatureCollection of polygons with inherited properties if any.  
+**Kind**: instance property of [<code>GeoJsonGeometries</code>](#GeoJsonGeometries)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - A FeatureCollection of polygons with inherited properties if any.  
 
 ## Authors
 * **Simone Primarosa** - [simonepri](https://github.com/simonepri)
