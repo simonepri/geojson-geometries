@@ -43,7 +43,7 @@ class GeoJsonGeometries {
   /**
    * Returns the list of geometries of type LineString found in the GeoJSON.
    * @public
-   * @return {object[]} A FeatureCollection of lines with inherited properties if any.
+   * @return {Object[]} A FeatureCollection of lines with inherited properties if any.
    */
   get lines() {
     return {type: FEATURE_COLLECTION, features: this.linesList || []};
@@ -51,7 +51,7 @@ class GeoJsonGeometries {
   /**
    * Returns the list of geometries of type Polygon found in the GeoJSON.
    * @public
-   * @return {object[]} A FeatureCollection of polygons with inherited properties if any.
+   * @return {Object[]} A FeatureCollection of polygons with inherited properties if any.
    */
   get polygons() {
     return {type: FEATURE_COLLECTION, features: this.polygonsList || []};
