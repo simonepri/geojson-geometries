@@ -14,7 +14,7 @@ class GeoJsonGeometries {
   /**
    * Create an instance of the geometries extractor.
    * @public
-   * @param  {Object} geojson The geojson from which extract the geometries.
+   * @param  {Object} geoJson The GeoJSON from which extract the geometries.
    * @param  {Object} [options] Optional options.
    * @param  {boolean} options.ignorePoints If true the extractor will ignore
    *  geometries of type Point.
@@ -23,17 +23,17 @@ class GeoJsonGeometries {
    * @param  {boolean} options.ignorePolygon If true the extractor will ignore
    *  geometries of type Polygon.
    */
-  constructor(geojson, options) {
+  constructor(geoJson, options) {
     options = typeof options === 'object' ? options : {};
 
     this.pointsList = options.ignorePoints === true ? undefined : [];
     this.linesList = options.ignoreLines === true ? undefined : [];
     this.polygonsList = options.ignorePolygons === true ? undefined : [];
 
-    this._loadGeneric(geojson);
+    this._loadGeneric(geoJson);
   }
   /**
-   * Returns the list of geometries of type Point found in the geojson.
+   * Returns the list of geometries of type Point found in the GeoJSON.
    * @public
    * @return {Object[]} A FeatureCollection of points with inherited properties if any.
    */
@@ -41,7 +41,7 @@ class GeoJsonGeometries {
     return {type: FEATURE_COLLECTION, features: this.pointsList || []};
   }
   /**
-   * Returns the list of geometries of type LineString found in the geojson.
+   * Returns the list of geometries of type LineString found in the GeoJSON.
    * @public
    * @return {object[]} A FeatureCollection of lines with inherited properties if any.
    */
@@ -49,7 +49,7 @@ class GeoJsonGeometries {
     return {type: FEATURE_COLLECTION, features: this.linesList || []};
   }
   /**
-   * Returns the list of geometries of type Polygon found in the geojson.
+   * Returns the list of geometries of type Polygon found in the GeoJSON.
    * @public
    * @return {object[]} A FeatureCollection of polygons with inherited properties if any.
    */
@@ -57,49 +57,49 @@ class GeoJsonGeometries {
     return {type: FEATURE_COLLECTION, features: this.polygonsList || []};
   }
 
-  _loadGeneric(geojson, properties) {
+  _loadGeneric(geoJson, properties) {
     if (this.pointsList !== undefined) {
-      switch (geojson.type) {
+      switch (geoJson.type) {
         case POINT: {
-          return this._loadPoint(geojson.coordinates, properties);
+          return this._loadPoint(geoJson.coordinates, properties);
         }
         case MULTI_POINT: {
-          return geojson.coordinates.forEach(coordinates => this._loadPoint(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates => this._loadPoint(coordinates, properties));
         }
         default: break;
       }
     }
     if (this.linesList !== undefined) {
-      switch (geojson.type) {
+      switch (geoJson.type) {
         case LINE_STRING: {
-          return this._loadLine(geojson.coordinates, properties);
+          return this._loadLine(geoJson.coordinates, properties);
         }
         case MULTI_LINE_STRING: {
-          return geojson.coordinates.forEach(coordinates => this._loadLine(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates => this._loadLine(coordinates, properties));
         }
         default: break;
       }
     }
     if (this.polygonsList !== undefined) {
-      switch (geojson.type) {
+      switch (geoJson.type) {
         case POLYGON: {
-          return this._loadPolygon(geojson.coordinates, properties);
+          return this._loadPolygon(geoJson.coordinates, properties);
         }
         case MULTI_POLYGON: {
-          return geojson.coordinates.forEach(coordinates => this._loadPolygon(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates => this._loadPolygon(coordinates, properties));
         }
         default: break;
       }
     }
-    switch (geojson.type) {
+    switch (geoJson.type) {
       case FEATURE: {
-        return this._loadGeneric(geojson.geometry, geojson.properties);
+        return this._loadGeneric(geoJson.geometry, geoJson.properties);
       }
       case FEATURE_COLLECTION: {
-        return geojson.features.forEach(feature => this._loadGeneric(feature.geometry, feature.properties));
+        return geoJson.features.forEach(feature => this._loadGeneric(feature.geometry, feature.properties));
       }
       case GEOMETRY_COLLECTION: {
-        return geojson.geometries.forEach(geometry => this._loadGeneric(geometry, properties));
+        return geoJson.geometries.forEach(geometry => this._loadGeneric(geometry, properties));
       }
       default: break;
     }
