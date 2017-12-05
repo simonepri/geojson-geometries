@@ -1,6 +1,6 @@
 {
   "name": "geojson-geometries",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extract elementary geometries from a geojson inheriting properties.",
   "main": "index.js",
   "dependencies": {},
