@@ -90,9 +90,9 @@ Create an instance of the geometries extractor.
 | --- | --- | --- |
 | geojson | <code>Object</code> | The geojson from which extract the geometries. |
 | [options] | <code>Object</code> | Optional options. |
-| options.ignorePoints | <code>boolean</code> | If true the extractor will ignore  geometries of type Point |
-| options.ignoreLines | <code>boolean</code> | If true the extractor will ignore  geometries of type LineString |
-| options.ignorePolygon | <code>boolean</code> | If true the extractor will ignore  geometries of type Polygon |
+| options.ignorePoints | <code>boolean</code> | If true the extractor will ignore  geometries of type Point. |
+| options.ignoreLines | <code>boolean</code> | If true the extractor will ignore  geometries of type LineString. |
+| options.ignorePolygon | <code>boolean</code> | If true the extractor will ignore  geometries of type Polygon. |
 
 <a name="GeoJsonGeometries+points"></a>
 

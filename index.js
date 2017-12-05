@@ -17,11 +17,11 @@ class GeoJsonGeometries {
    * @param  {Object} geojson The geojson from which extract the geometries.
    * @param  {Object} [options] Optional options.
    * @param  {boolean} options.ignorePoints If true the extractor will ignore
-   *  geometries of type Point
+   *  geometries of type Point.
    * @param  {boolean} options.ignoreLines If true the extractor will ignore
-   *  geometries of type LineString
+   *  geometries of type LineString.
    * @param  {boolean} options.ignorePolygon If true the extractor will ignore
-   *  geometries of type Polygon
+   *  geometries of type Polygon.
    */
   constructor(geojson, options) {
     options = typeof options === 'object' ? options : {};
