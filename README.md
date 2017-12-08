@@ -122,7 +122,7 @@ Returns the list of geometries of type Polygon found in the GeoJSON.
 ## Authors
 * **Simone Primarosa** - [simonepri](https://github.com/simonepri)
 
-See also the list of [contributors](https://github.com/simonepri/world-country/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/simonepri/geojson-geometries/contributors) who participated in this project.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
