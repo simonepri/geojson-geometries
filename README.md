@@ -1,4 +1,6 @@
 # geojson-geometries
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/simonepri/geojson-geometries.svg)](https://greenkeeper.io/)
 [![Travis CI](https://travis-ci.org/simonepri/geojson-geometries.svg?branch=master)](https://travis-ci.org/simonepri/geojson-geometries) [![Codecov](https://img.shields.io/codecov/c/github/simonepri/geojson-geometries/master.svg)](https://codecov.io/gh/simonepri/geojson-geometries) [![npm](https://img.shields.io/npm/dm/geojson-geometries.svg)](https://www.npmjs.com/package/geojson-geometries) [![npm version](https://img.shields.io/npm/v/geojson-geometries.svg)](https://www.npmjs.com/package/geojson-geometries) [![npm dependencies](https://david-dm.org/simonepri/geojson-geometries.svg)](https://david-dm.org/simonepri/geojson-geometries) [![npm dev dependencies](https://david-dm.org/simonepri/geojson-geometries/dev-status.svg)](https://david-dm.org/simonepri/geojson-geometries#info=devDependencies)
 > ⛏ Extract elementary geometries from a GeoJSON inheriting properties.
 
