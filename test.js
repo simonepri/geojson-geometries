@@ -1,6 +1,6 @@
-import test from 'ava';
+const test = require('ava');
 
-import M from '.';
+const M = require('.');
 
 test('should do nothing for an empty geojson', t => {
   const geojson = {};
@@ -14,7 +14,7 @@ test('should do nothing for an empty geojson', t => {
 test('should extract a Point', t => {
   const geojson = {
     type: 'Point',
-    coordinates: [100.0, 0.0]
+    coordinates: [100, 0]
   };
   const geometries = new M(geojson);
 
@@ -32,8 +32,8 @@ test('should extract a LineString', t => {
   const geojson = {
     type: 'LineString',
     coordinates: [
-      [100.0, 0.0],
-      [101.0, 1.0]
+      [100, 0],
+      [101, 1]
     ]
   };
   const geometries = new M(geojson);
@@ -53,11 +53,11 @@ test('should extract a Polygon', t => {
     type: 'Polygon',
     coordinates: [
       [
-        [100.0, 0.0],
-        [101.0, 0.0],
-        [101.0, 1.0],
-        [100.0, 1.0],
-        [100.0, 0.0]
+        [100, 0],
+        [101, 0],
+        [101, 1],
+        [100, 1],
+        [100, 0]
       ]
     ]
   };
@@ -78,11 +78,11 @@ test('should extract a Polygon with holes', t => {
     type: 'Polygon',
     coordinates: [
       [
-        [100.0, 0.0],
-        [101.0, 0.0],
-        [101.0, 1.0],
-        [100.0, 1.0],
-        [100.0, 0.0]
+        [100, 0],
+        [101, 0],
+        [101, 1],
+        [100, 1],
+        [100, 0]
       ],
       [
         [100.2, 0.2],
@@ -109,8 +109,8 @@ test('should extract a MultiPoint', t => {
   const geojson = {
     type: 'MultiPoint',
     coordinates: [
-      [100.0, 0.0],
-      [101.0, 1.0]
+      [100, 0],
+      [101, 1]
     ]
   };
   const geometries = new M(geojson);
@@ -134,12 +134,12 @@ test('should extract a MultiLineString', t => {
     type: 'MultiLineString',
     coordinates: [
       [
-        [100.0, 0.0],
-        [101.0, 1.0]
+        [100, 0],
+        [101, 1]
       ],
       [
-        [102.0, 2.0],
-        [103.0, 3.0]
+        [102, 2],
+        [103, 3]
       ]
     ]
   };
@@ -165,20 +165,20 @@ test('should extract a MultiPolygon', t => {
     coordinates: [
       [
         [
-          [102.0, 2.0],
-          [103.0, 2.0],
-          [103.0, 3.0],
-          [102.0, 3.0],
-          [102.0, 2.0]
+          [102, 2],
+          [103, 2],
+          [103, 3],
+          [102, 3],
+          [102, 2]
         ]
       ],
       [
         [
-          [100.0, 0.0],
-          [101.0, 0.0],
-          [101.0, 1.0],
-          [100.0, 1.0],
-          [100.0, 0.0]
+          [100, 0],
+          [101, 0],
+          [101, 1],
+          [100, 1],
+          [100, 0]
         ],
         [
           [100.2, 0.2],
@@ -212,13 +212,13 @@ test('should extract a GeometryCollection', t => {
     geometries: [
       {
         type: 'Point',
-        coordinates: [100.0, 0.0]
+        coordinates: [100, 0]
       },
       {
         type: 'LineString',
         coordinates: [
-          [101.0, 0.0],
-          [102.0, 1.0]
+          [101, 0],
+          [102, 1]
         ]
       }
     ]
@@ -246,11 +246,11 @@ test('should extract a Feature', t => {
       type: 'Polygon',
       coordinates: [
         [
-          [100.0, 0.0],
-          [101.0, 0.0],
-          [101.0, 1.0],
-          [100.0, 1.0],
-          [100.0, 0.0]
+          [100, 0],
+          [101, 0],
+          [101, 1],
+          [100, 1],
+          [100, 0]
         ]
       ]
     },
@@ -276,7 +276,7 @@ test('should extract a FeatureCollection', t => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [102.0, 0.5]
+          coordinates: [102, 0.5]
         },
         properties: {prop0: 'value0'}
       },
@@ -285,10 +285,10 @@ test('should extract a FeatureCollection', t => {
         geometry: {
           type: 'LineString',
           coordinates: [
-            [102.0, 0.0],
-            [103.0, 1.0],
-            [104.0, 0.0],
-            [105.0, 1.0]
+            [102, 0],
+            [103, 1],
+            [104, 0],
+            [105, 1]
           ]
         },
         properties: {prop1: 'value1'}
@@ -299,11 +299,11 @@ test('should extract a FeatureCollection', t => {
           type: 'Polygon',
           coordinates: [
             [
-              [100.0, 0.0],
-              [101.0, 0.0],
-              [101.0, 1.0],
-              [100.0, 1.0],
-              [100.0, 0.0]
+              [100, 0],
+              [101, 0],
+              [101, 1],
+              [100, 1],
+              [100, 0]
             ]
           ]
         },
@@ -328,24 +328,24 @@ test('should extract only a Point', t => {
     geometries: [
       {
         type: 'Point',
-        coordinates: [100.0, 0.0]
+        coordinates: [100, 0]
       },
       {
         type: 'LineString',
         coordinates: [
-          [101.0, 0.0],
-          [102.0, 1.0]
+          [101, 0],
+          [102, 1]
         ]
       },
       {
         type: 'Polygon',
         coordinates: [
           [
-            [100.0, 0.0],
-            [101.0, 0.0],
-            [101.0, 1.0],
-            [100.0, 1.0],
-            [100.0, 0.0]
+            [100, 0],
+            [101, 0],
+            [101, 1],
+            [100, 1],
+            [100, 0]
           ]
         ]
       }
@@ -364,24 +364,24 @@ test('should extract only a Line', t => {
     geometries: [
       {
         type: 'Point',
-        coordinates: [100.0, 0.0]
+        coordinates: [100, 0]
       },
       {
         type: 'LineString',
         coordinates: [
-          [101.0, 0.0],
-          [102.0, 1.0]
+          [101, 0],
+          [102, 1]
         ]
       },
       {
         type: 'Polygon',
         coordinates: [
           [
-            [100.0, 0.0],
-            [101.0, 0.0],
-            [101.0, 1.0],
-            [100.0, 1.0],
-            [100.0, 0.0]
+            [100, 0],
+            [101, 0],
+            [101, 1],
+            [100, 1],
+            [100, 0]
           ]
         ]
       }
@@ -400,24 +400,24 @@ test('should extract only a Polygon', t => {
     geometries: [
       {
         type: 'Point',
-        coordinates: [100.0, 0.0]
+        coordinates: [100, 0]
       },
       {
         type: 'LineString',
         coordinates: [
-          [101.0, 0.0],
-          [102.0, 1.0]
+          [101, 0],
+          [102, 1]
         ]
       },
       {
         type: 'Polygon',
         coordinates: [
           [
-            [100.0, 0.0],
-            [101.0, 0.0],
-            [101.0, 1.0],
-            [100.0, 1.0],
-            [100.0, 0.0]
+            [100, 0],
+            [101, 0],
+            [101, 1],
+            [100, 1],
+            [100, 0]
           ]
         ]
       }
