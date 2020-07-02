@@ -1,6 +1,6 @@
 {
   "name": "geojson-geometries",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Extract elementary geometries from a geojson inheriting properties.",
   "license": "MIT",
   "homepage": "https://github.com/simonepri/geojson-geometries#readme",
