@@ -32,6 +32,7 @@ class GeoJsonGeometries {
 
     this._loadGeneric(geoJson);
   }
+
   /**
    * Returns the list of geometries of type Point found in the GeoJSON.
    * @public
@@ -40,6 +41,7 @@ class GeoJsonGeometries {
   get points() {
     return {type: FEATURE_COLLECTION, features: this.pointsList || []};
   }
+
   /**
    * Returns the list of geometries of type LineString found in the GeoJSON.
    * @public
@@ -48,6 +50,7 @@ class GeoJsonGeometries {
   get lines() {
     return {type: FEATURE_COLLECTION, features: this.linesList || []};
   }
+
   /**
    * Returns the list of geometries of type Polygon found in the GeoJSON.
    * @public
@@ -63,56 +66,96 @@ class GeoJsonGeometries {
         case POINT: {
           return this._loadPoint(geoJson.coordinates, properties);
         }
+
         case MULTI_POINT: {
-          return geoJson.coordinates.forEach(coordinates => this._loadPoint(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates =>
+            this._loadPoint(coordinates, properties)
+          );
         }
-        default: break;
+
+        default:
+          break;
       }
     }
+
     if (this.linesList !== undefined) {
       switch (geoJson.type) {
         case LINE_STRING: {
           return this._loadLine(geoJson.coordinates, properties);
         }
+
         case MULTI_LINE_STRING: {
-          return geoJson.coordinates.forEach(coordinates => this._loadLine(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates =>
+            this._loadLine(coordinates, properties)
+          );
         }
-        default: break;
+
+        default:
+          break;
       }
     }
+
     if (this.polygonsList !== undefined) {
       switch (geoJson.type) {
         case POLYGON: {
           return this._loadPolygon(geoJson.coordinates, properties);
         }
+
         case MULTI_POLYGON: {
-          return geoJson.coordinates.forEach(coordinates => this._loadPolygon(coordinates, properties));
+          return geoJson.coordinates.forEach(coordinates =>
+            this._loadPolygon(coordinates, properties)
+          );
         }
-        default: break;
+
+        default:
+          break;
       }
     }
+
     switch (geoJson.type) {
       case FEATURE: {
         return this._loadGeneric(geoJson.geometry, geoJson.properties);
       }
+
       case FEATURE_COLLECTION: {
-        return geoJson.features.forEach(feature => this._loadGeneric(feature.geometry, feature.properties));
+        return geoJson.features.forEach(feature =>
+          this._loadGeneric(feature.geometry, feature.properties)
+        );
       }
+
       case GEOMETRY_COLLECTION: {
-        return geoJson.geometries.forEach(geometry => this._loadGeneric(geometry, properties));
+        return geoJson.geometries.forEach(geometry =>
+          this._loadGeneric(geometry, properties)
+        );
       }
-      default: break;
+
+      default:
+        break;
     }
   }
 
   _loadPoint(coordinates, properties) {
-    this.pointsList.push({type: FEATURE, geometry: {type: POINT, coordinates}, properties});
+    this.pointsList.push({
+      type: FEATURE,
+      geometry: {type: POINT, coordinates},
+      properties
+    });
   }
+
   _loadLine(coordinates, properties) {
-    this.linesList.push({type: FEATURE, geometry: {type: LINE_STRING, coordinates}, properties});
+    this.linesList.push({
+      type: FEATURE,
+      geometry: {type: LINE_STRING, coordinates},
+      properties
+    });
   }
+
   _loadPolygon(coordinates, properties) {
-    this.polygonsList.push({type: FEATURE, geometry: {type: POLYGON, coordinates}, properties});
+    this.polygonsList.push({
+      type: FEATURE,
+      geometry: {type: POLYGON, coordinates},
+      properties
+    });
   }
 }
 

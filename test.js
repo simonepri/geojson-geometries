@@ -22,13 +22,19 @@ test('should extract a Point', t => {
   t.is(geometries.lines.features.length, 0);
   t.is(geometries.polygons.features.length, 0);
 
-  t.deepEqual(geometries.points.features[0].geometry.coordinates, geojson.coordinates);
+  t.deepEqual(
+    geometries.points.features[0].geometry.coordinates,
+    geojson.coordinates
+  );
 });
 
 test('should extract a LineString', t => {
   const geojson = {
     type: 'LineString',
-    coordinates: [[100.0, 0.0], [101.0, 1.0]]
+    coordinates: [
+      [100.0, 0.0],
+      [101.0, 1.0]
+    ]
   };
   const geometries = new M(geojson);
 
@@ -36,14 +42,23 @@ test('should extract a LineString', t => {
   t.is(geometries.lines.features.length, 1);
   t.is(geometries.polygons.features.length, 0);
 
-  t.deepEqual(geometries.lines.features[0].geometry.coordinates, geojson.coordinates);
+  t.deepEqual(
+    geometries.lines.features[0].geometry.coordinates,
+    geojson.coordinates
+  );
 });
 
 test('should extract a Polygon', t => {
   const geojson = {
     type: 'Polygon',
     coordinates: [
-      [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
+      [
+        [100.0, 0.0],
+        [101.0, 0.0],
+        [101.0, 1.0],
+        [100.0, 1.0],
+        [100.0, 0.0]
+      ]
     ]
   };
   const geometries = new M(geojson);
@@ -52,15 +67,30 @@ test('should extract a Polygon', t => {
   t.is(geometries.lines.features.length, 0);
   t.is(geometries.polygons.features.length, 1);
 
-  t.deepEqual(geometries.polygons.features[0].geometry.coordinates, geojson.coordinates);
+  t.deepEqual(
+    geometries.polygons.features[0].geometry.coordinates,
+    geojson.coordinates
+  );
 });
 
 test('should extract a Polygon with holes', t => {
   const geojson = {
     type: 'Polygon',
     coordinates: [
-      [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-      [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+      [
+        [100.0, 0.0],
+        [101.0, 0.0],
+        [101.0, 1.0],
+        [100.0, 1.0],
+        [100.0, 0.0]
+      ],
+      [
+        [100.2, 0.2],
+        [100.8, 0.2],
+        [100.8, 0.8],
+        [100.2, 0.8],
+        [100.2, 0.2]
+      ]
     ]
   };
   const geometries = new M(geojson);
@@ -69,13 +99,19 @@ test('should extract a Polygon with holes', t => {
   t.is(geometries.lines.features.length, 0);
   t.is(geometries.polygons.features.length, 1);
 
-  t.deepEqual(geometries.polygons.features[0].geometry.coordinates, geojson.coordinates);
+  t.deepEqual(
+    geometries.polygons.features[0].geometry.coordinates,
+    geojson.coordinates
+  );
 });
 
 test('should extract a MultiPoint', t => {
   const geojson = {
     type: 'MultiPoint',
-    coordinates: [[100.0, 0.0], [101.0, 1.0]]
+    coordinates: [
+      [100.0, 0.0],
+      [101.0, 1.0]
+    ]
   };
   const geometries = new M(geojson);
 
@@ -83,16 +119,28 @@ test('should extract a MultiPoint', t => {
   t.is(geometries.lines.features.length, 0);
   t.is(geometries.polygons.features.length, 0);
 
-  t.deepEqual(geometries.points.features[0].geometry.coordinates, geojson.coordinates[0]);
-  t.deepEqual(geometries.points.features[1].geometry.coordinates, geojson.coordinates[1]);
+  t.deepEqual(
+    geometries.points.features[0].geometry.coordinates,
+    geojson.coordinates[0]
+  );
+  t.deepEqual(
+    geometries.points.features[1].geometry.coordinates,
+    geojson.coordinates[1]
+  );
 });
 
 test('should extract a MultiLineString', t => {
   const geojson = {
     type: 'MultiLineString',
     coordinates: [
-      [[100.0, 0.0], [101.0, 1.0]],
-      [[102.0, 2.0], [103.0, 3.0]]
+      [
+        [100.0, 0.0],
+        [101.0, 1.0]
+      ],
+      [
+        [102.0, 2.0],
+        [103.0, 3.0]
+      ]
     ]
   };
   const geometries = new M(geojson);
@@ -101,8 +149,14 @@ test('should extract a MultiLineString', t => {
   t.is(geometries.lines.features.length, 2);
   t.is(geometries.polygons.features.length, 0);
 
-  t.deepEqual(geometries.lines.features[0].geometry.coordinates, geojson.coordinates[0]);
-  t.deepEqual(geometries.lines.features[1].geometry.coordinates, geojson.coordinates[1]);
+  t.deepEqual(
+    geometries.lines.features[0].geometry.coordinates,
+    geojson.coordinates[0]
+  );
+  t.deepEqual(
+    geometries.lines.features[1].geometry.coordinates,
+    geojson.coordinates[1]
+  );
 });
 
 test('should extract a MultiPolygon', t => {
@@ -110,10 +164,29 @@ test('should extract a MultiPolygon', t => {
     type: 'MultiPolygon',
     coordinates: [
       [
-        [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
-      ], [
-        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-        [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+        [
+          [102.0, 2.0],
+          [103.0, 2.0],
+          [103.0, 3.0],
+          [102.0, 3.0],
+          [102.0, 2.0]
+        ]
+      ],
+      [
+        [
+          [100.0, 0.0],
+          [101.0, 0.0],
+          [101.0, 1.0],
+          [100.0, 1.0],
+          [100.0, 0.0]
+        ],
+        [
+          [100.2, 0.2],
+          [100.8, 0.2],
+          [100.8, 0.8],
+          [100.2, 0.8],
+          [100.2, 0.2]
+        ]
       ]
     ]
   };
@@ -123,20 +196,32 @@ test('should extract a MultiPolygon', t => {
   t.is(geometries.lines.features.length, 0);
   t.is(geometries.polygons.features.length, 2);
 
-  t.deepEqual(geometries.polygons.features[0].geometry.coordinates, geojson.coordinates[0]);
-  t.deepEqual(geometries.polygons.features[1].geometry.coordinates, geojson.coordinates[1]);
+  t.deepEqual(
+    geometries.polygons.features[0].geometry.coordinates,
+    geojson.coordinates[0]
+  );
+  t.deepEqual(
+    geometries.polygons.features[1].geometry.coordinates,
+    geojson.coordinates[1]
+  );
 });
 
 test('should extract a GeometryCollection', t => {
   const geojson = {
     type: 'GeometryCollection',
-    geometries: [{
-      type: 'Point',
-      coordinates: [100.0, 0.0]
-    }, {
-      type: 'LineString',
-      coordinates: [[101.0, 0.0], [102.0, 1.0]]
-    }]
+    geometries: [
+      {
+        type: 'Point',
+        coordinates: [100.0, 0.0]
+      },
+      {
+        type: 'LineString',
+        coordinates: [
+          [101.0, 0.0],
+          [102.0, 1.0]
+        ]
+      }
+    ]
   };
   const geometries = new M(geojson);
 
@@ -144,8 +229,14 @@ test('should extract a GeometryCollection', t => {
   t.is(geometries.lines.features.length, 1);
   t.is(geometries.polygons.features.length, 0);
 
-  t.deepEqual(geometries.points.features[0].geometry.coordinates, geojson.geometries[0].coordinates);
-  t.deepEqual(geometries.lines.features[0].geometry.coordinates, geojson.geometries[1].coordinates);
+  t.deepEqual(
+    geometries.points.features[0].geometry.coordinates,
+    geojson.geometries[0].coordinates
+  );
+  t.deepEqual(
+    geometries.lines.features[0].geometry.coordinates,
+    geojson.geometries[1].coordinates
+  );
 });
 
 test('should extract a Feature', t => {
@@ -154,7 +245,13 @@ test('should extract a Feature', t => {
     geometry: {
       type: 'Polygon',
       coordinates: [
-        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
+        [
+          [100.0, 0.0],
+          [101.0, 0.0],
+          [101.0, 1.0],
+          [100.0, 1.0],
+          [100.0, 0.0]
+        ]
       ]
     },
     properties: {
@@ -172,31 +269,47 @@ test('should extract a Feature', t => {
 });
 
 test('should extract a FeatureCollection', t => {
-  const geojson = {type: 'FeatureCollection',
-    features: [{
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [102.0, 0.5]
+  const geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [102.0, 0.5]
+        },
+        properties: {prop0: 'value0'}
       },
-      properties: {prop0: 'value0'}
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'LineString',
-        coordinates: [[102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]]
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [102.0, 0.0],
+            [103.0, 1.0],
+            [104.0, 0.0],
+            [105.0, 1.0]
+          ]
+        },
+        properties: {prop1: 'value1'}
       },
-      properties: {prop1: 'value1'}
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Polygon',
-        coordinates: [
-          [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
-        ]
-      },
-      properties: {prop2: 'value2'}
-    }]
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [100.0, 0.0],
+              [101.0, 0.0],
+              [101.0, 1.0],
+              [100.0, 1.0],
+              [100.0, 0.0]
+            ]
+          ]
+        },
+        properties: {prop2: 'value2'}
+      }
+    ]
   };
   const geometries = new M(geojson);
 
@@ -212,18 +325,31 @@ test('should extract a FeatureCollection', t => {
 test('should extract only a Point', t => {
   const geojson = {
     type: 'GeometryCollection',
-    geometries: [{
-      type: 'Point',
-      coordinates: [100.0, 0.0]
-    }, {
-      type: 'LineString',
-      coordinates: [[101.0, 0.0], [102.0, 1.0]]
-    }, {
-      type: 'Polygon',
-      coordinates: [
-        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
-      ]
-    }]
+    geometries: [
+      {
+        type: 'Point',
+        coordinates: [100.0, 0.0]
+      },
+      {
+        type: 'LineString',
+        coordinates: [
+          [101.0, 0.0],
+          [102.0, 1.0]
+        ]
+      },
+      {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [100.0, 0.0],
+            [101.0, 0.0],
+            [101.0, 1.0],
+            [100.0, 1.0],
+            [100.0, 0.0]
+          ]
+        ]
+      }
+    ]
   };
   const geometries = new M(geojson, {ignoreLines: true, ignorePolygons: true});
 
@@ -235,18 +361,31 @@ test('should extract only a Point', t => {
 test('should extract only a Line', t => {
   const geojson = {
     type: 'GeometryCollection',
-    geometries: [{
-      type: 'Point',
-      coordinates: [100.0, 0.0]
-    }, {
-      type: 'LineString',
-      coordinates: [[101.0, 0.0], [102.0, 1.0]]
-    }, {
-      type: 'Polygon',
-      coordinates: [
-        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
-      ]
-    }]
+    geometries: [
+      {
+        type: 'Point',
+        coordinates: [100.0, 0.0]
+      },
+      {
+        type: 'LineString',
+        coordinates: [
+          [101.0, 0.0],
+          [102.0, 1.0]
+        ]
+      },
+      {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [100.0, 0.0],
+            [101.0, 0.0],
+            [101.0, 1.0],
+            [100.0, 1.0],
+            [100.0, 0.0]
+          ]
+        ]
+      }
+    ]
   };
   const geometries = new M(geojson, {ignorePoints: true, ignorePolygons: true});
 
@@ -258,18 +397,31 @@ test('should extract only a Line', t => {
 test('should extract only a Polygon', t => {
   const geojson = {
     type: 'GeometryCollection',
-    geometries: [{
-      type: 'Point',
-      coordinates: [100.0, 0.0]
-    }, {
-      type: 'LineString',
-      coordinates: [[101.0, 0.0], [102.0, 1.0]]
-    }, {
-      type: 'Polygon',
-      coordinates: [
-        [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
-      ]
-    }]
+    geometries: [
+      {
+        type: 'Point',
+        coordinates: [100.0, 0.0]
+      },
+      {
+        type: 'LineString',
+        coordinates: [
+          [101.0, 0.0],
+          [102.0, 1.0]
+        ]
+      },
+      {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [100.0, 0.0],
+            [101.0, 0.0],
+            [101.0, 1.0],
+            [100.0, 1.0],
+            [100.0, 0.0]
+          ]
+        ]
+      }
+    ]
   };
   const geometries = new M(geojson, {ignorePoints: true, ignoreLines: true});
 

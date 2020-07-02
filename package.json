@@ -2,30 +2,16 @@
   "name": "geojson-geometries",
   "version": "1.1.2",
   "description": "Extract elementary geometries from a geojson inheriting properties.",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "ava": "*",
-    "codecov": "^3.0.0",
-    "nyc": "^11.3.0",
-    "xo": "*"
+  "license": "MIT",
+  "homepage": "https://github.com/simonepri/geojson-geometries#readme",
+  "repository": "github:simonepri/geojson-geometries",
+  "bugs": {
+    "url": "https://github.com/simonepri/geojson-geometries/issues",
+    "email": "simonepri@outlook.com"
   },
-  "engines": {
-    "node": ">=6"
-  },
-  "scripts": {
-    "test": "xo && nyc ava --verbose",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/simonepri/geojson-geometries.git"
-  },
-  "author": [
-    {
-      "name": "Simone Primarosa",
-      "email": "simone.pri@hotmail.it"
-    }
+  "author": "Simone Primarosa <simonepri@outlook.com> (https://simoneprimarosa.com)",
+  "contributors": [
+    "Simone Primarosa <simonepri@outlook.com> (https://simoneprimarosa.com)"
   ],
   "keywords": [
     "geojson",
@@ -39,18 +25,39 @@
     "polygons",
     "extract"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/simonepri/geojson-geometries/issues"
-  },
-  "homepage": "https://github.com/simonepri/geojson-geometries#readme",
-  "xo": {
-    "space": true
-  },
+  "main": "index.js",
   "files": [
-    "LICENSE",
-    "README.md",
-    "package.json",
     "index.js"
-  ]
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "lint": "xo",
+    "test": "nyc ava",
+    "release": "npx np",
+    "update": "npx npm-check -u"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "nyc": "^14.1.1",
+    "xo": "~0.24.0"
+  },
+  "ava": {
+    "verbose": true
+  },
+  "nyc": {
+    "reporter": [
+      "lcovonly",
+      "text"
+    ]
+  },
+  "xo": {
+    "prettier": true,
+    "space": true,
+    "rules": {
+      "prefer-destructuring": "off"
+    }
+  }
 }
